@@ -4,11 +4,28 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import Article from './Article';
 import FormDialog from './FormDialog';
 import theme from '../theme';
 import '../globalStyles.scss';
 
+const initialArticles = [
+  {
+    title: 'Lorem ipsum dolor sit amet',
+    description:
+      'Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat',
+    image:
+      'https://material-ui.com/static/images/cards/contemplative-reptile.jpg',
+  },
+  {
+    title: 'Lorem ipsum dolor sit amet',
+    description:
+      'Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat',
+  },
+];
+
 function App() {
+  const [articles, setArticles] = useState(initialArticles);
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -32,8 +49,23 @@ function App() {
             </Button>
           </Grid>
         </Grid>
+        <Grid container spacing={2}>
+          {articles.map((article, index) => (
+            <Grid key={`article-${index}`} item xs={12} sm={6} md={4}>
+              <Article
+                title={article.title}
+                description={article.description}
+                image={article.image}
+              />
+            </Grid>
+          ))}
+        </Grid>
       </Container>
-      <FormDialog open={open} handleClose={handleClose} />
+      <FormDialog
+        open={open}
+        setArticles={setArticles}
+        handleClose={handleClose}
+      />
     </ThemeProvider>
   );
 }
