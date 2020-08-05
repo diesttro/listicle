@@ -22,13 +22,11 @@ function Field({ name, label, register, errors }) {
   );
 }
 
-function FormDialog({ open, setArticles, handleClose }) {
+function FormDialog({ open, form, handleFormSubmit, handleClose }) {
   const { register, handleSubmit, errors } = useForm();
 
   const onSubmit = data => {
-    console.log(data);
-
-    setArticles(articles => articles.concat(data));
+    handleFormSubmit(data);
     handleClose();
   };
 
