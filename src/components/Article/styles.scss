@@ -1,0 +1,23 @@
+.MuiCard-root.card {
+  position: relative;
+
+  &:hover .MuiCardActions-root.card-actions {
+    display: flex;
+  }
+
+  .MuiCardActions-root.card-actions {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .MuiIconButton-root.icon-button {
+    background-color: #d32f2f;
+    color: #fff;
+
+    &:hover {
+      background-color: #b71c1c;
+    }
+  }
+}
