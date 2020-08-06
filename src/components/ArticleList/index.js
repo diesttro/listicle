@@ -1,9 +1,10 @@
 import React from 'react';
+import Grid from '@material-ui/core/Grid';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteArticle, openDialog } from '../../state/actions';
 import Article from '../Article';
 
-function Articles() {
+function ArticleList() {
   const articles = useSelector(state => state.articles);
   const dispatch = useDispatch();
 
@@ -11,17 +12,21 @@ function Articles() {
 
   const handleOpenDialog = id => dispatch(openDialog(id));
 
-  return articles.map((article, index) => (
-    <Article
-      key={`article-${index}`}
-      id={article.id}
-      title={article.title}
-      description={article.description}
-      image={article.image}
-      handleDelete={handleDelete}
-      handleOpenDialog={handleOpenDialog}
-    />
-  ));
+  return (
+    <Grid container spacing={2}>
+      {articles.map((article, index) => (
+        <Article
+          key={`article-${index}`}
+          id={article.id}
+          title={article.title}
+          description={article.description}
+          image={article.image}
+          handleDelete={handleDelete}
+          handleOpenDialog={handleOpenDialog}
+        />
+      ))}
+    </Grid>
+  );
 }
 
-export default Articles;
+export default ArticleList;
