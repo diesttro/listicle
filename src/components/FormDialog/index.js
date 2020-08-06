@@ -10,20 +10,26 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 
-function Field({ name, label, register, errors }) {
+function Field({ name, label, value, register, errors }) {
   return (
     <FormControl fullWidth error={errors[name] ? true : false} className="mb-1">
       <InputLabel htmlFor={name}>{label}</InputLabel>
-      <Input id={name} name={name} inputRef={register()} />
+      <Input id={name} name={name} defaultValue={value} inputRef={register()} />
       <FormHelperText>
-        {errors[name] ? errors[name].message : <span>&nbsp;</span>}
+        {errors[name] ? errors[name].message : <>&nbsp;</>}
       </FormHelperText>
     </FormControl>
   );
 }
 
-function FormDialog({ open, form, handleFormSubmit, handleClose }) {
+function FormDialog({
+  open = false,
+  article = {},
+  handleFormSubmit,
+  handleClose,
+}) {
   const { register, handleSubmit, errors } = useForm();
+  const { title, description, image } = article;
 
   const onSubmit = data => {
     handleFormSubmit(data);
@@ -38,18 +44,21 @@ function FormDialog({ open, form, handleFormSubmit, handleClose }) {
           <Field
             name="title"
             label="Title *"
+            value={title || ''}
             register={() => register({ required: 'Field is required' })}
             errors={errors}
           />
           <Field
             name="description"
             label="Description *"
+            value={description || ''}
             register={() => register({ required: 'Field is required' })}
             errors={errors}
           />
           <Field
             name="image"
             label="Image (url)"
+            value={image || ''}
             register={() => register()}
             errors={errors}
           />

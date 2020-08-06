@@ -12,7 +12,14 @@ import './styles.scss';
 
 const DEFAULT_IMAGE = 'https://dummyimage.com/300/d6d6d6&text=+';
 
-function Article({ title, description, image }) {
+function Article({
+  id,
+  title,
+  description,
+  image,
+  handleDelete,
+  handleOpenDialog,
+}) {
   return (
     <Grid item xs={12} sm={6} md={4}>
       <Card className="card">
@@ -26,10 +33,13 @@ function Article({ title, description, image }) {
           </Typography>
         </CardContent>
         <CardActions className="card-actions">
-          <IconButton className="icon-button">
+          <IconButton
+            className="icon-button"
+            onClick={() => handleOpenDialog(id)}
+          >
             <EditIcon />
           </IconButton>
-          <IconButton className="icon-button">
+          <IconButton className="icon-button" onClick={() => handleDelete(id)}>
             <DeleteIcon />
           </IconButton>
         </CardActions>

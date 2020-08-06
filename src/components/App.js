@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
@@ -10,16 +10,6 @@ import theme from '../theme';
 import '../globalStyles.scss';
 
 function App() {
-  const [open, setOpen] = useState(false);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   return (
     <ThemeProvider theme={theme}>
       <Container maxWidth="md">
@@ -28,7 +18,7 @@ function App() {
         </Typography>
         <Grid container spacing={2}>
           <Grid container item justify="flex-end" xs={12}>
-            <Button variant="contained" color="primary" onClick={handleOpen}>
+            <Button variant="contained" color="primary" onClick={() => {}}>
               Add card
             </Button>
           </Grid>
@@ -37,7 +27,7 @@ function App() {
           <Articles />
         </Grid>
       </Container>
-      <Dialog open={open} handleClose={handleClose} />
+      <Dialog />
     </ThemeProvider>
   );
 }

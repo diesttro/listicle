@@ -1,22 +1,30 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addArticle } from '../../state/actions';
+import { addArticle, editArticle, closeDialog } from '../../state/actions';
 import FormDialog from '../../components/FormDialog';
 
-function Dialog({ open, handleClose }) {
-  const form = useSelector(state => state.form);
+function Dialog() {
+  const { opened, articleId } = useSelector(state => state.formDialog);
+  const articles = useSelector(state => state.articles);
   const dispatch = useDispatch();
 
-  const handleFormSubmit = data => {
-    dispatch(addArticle(data));
+  const article = articles.find(article => article.id === articleId);
+
+  const handleFormSubmit = data =>
+    articleId
+      ? dispatch(editArticle({ ...data, id: articleId }))
+      : dispatch(addArticle(data));
+
+  const handleCloseDialog = () => {
+    dispatch(closeDialog());
   };
 
   return (
     <FormDialog
-      open={open}
-      form={form}
+      open={opened}
+      article={article}
       handleFormSubmit={handleFormSubmit}
-      handleClose={handleClose}
+      handleClose={handleCloseDialog}
     />
   );
 }
