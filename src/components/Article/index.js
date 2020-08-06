@@ -23,7 +23,12 @@ function Article({
   return (
     <Grid item xs={12} sm={6} md={4}>
       <Card className="card">
-        <CardMedia image={image || DEFAULT_IMAGE} style={{ height: '140px' }} />
+        <CardMedia
+          src={image || DEFAULT_IMAGE}
+          component="img"
+          style={{ height: '140px' }}
+          onError={event => (event.target.src = DEFAULT_IMAGE)}
+        />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {title}
