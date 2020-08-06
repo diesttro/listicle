@@ -12,11 +12,17 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import { addArticle, editArticle, closeDialog } from '../../state/actions';
 
-function Field({ name, label, value, register, errors }) {
+function Field({ name, label, value, autoFocus, register, errors }) {
   return (
     <FormControl fullWidth error={errors[name] ? true : false} className="mb-1">
       <InputLabel htmlFor={name}>{label}</InputLabel>
-      <Input id={name} name={name} defaultValue={value} inputRef={register()} />
+      <Input
+        id={name}
+        name={name}
+        defaultValue={value}
+        autoFocus={autoFocus}
+        inputRef={register()}
+      />
       <FormHelperText>
         {errors[name] ? errors[name].message : <>&nbsp;</>}
       </FormHelperText>
@@ -55,6 +61,7 @@ function FormDialog() {
             name="title"
             label="Title *"
             value={title}
+            autoFocus
             register={() => register({ required: 'Field is required' })}
             errors={errors}
           />

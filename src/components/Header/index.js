@@ -1,10 +1,16 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
+import { openDialog } from '../../state/actions';
 
 function Header() {
+  const dispatch = useDispatch();
+
+  const handleOpenDialog = () => dispatch(openDialog());
+
   return (
     <Grid
       container
@@ -24,7 +30,7 @@ function Header() {
           color="primary"
           size="large"
           startIcon={<AddIcon />}
-          onClick={() => {}}
+          onClick={handleOpenDialog}
         >
           Add article
         </Button>
