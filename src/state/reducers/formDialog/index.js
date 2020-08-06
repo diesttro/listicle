@@ -1,5 +1,5 @@
 const initialState = {
-  opened: false,
+  open: false,
   articleId: null,
 };
 
@@ -8,7 +8,7 @@ const formDialog = (state = initialState, action) => {
 
   switch (type) {
     case 'OPEN_DIALOG':
-      return { opened: true, articleId: payload.articleId };
+      return { open: true, articleId: payload.articleId };
     case 'CLOSE_DIALOG':
       return initialState;
     default:

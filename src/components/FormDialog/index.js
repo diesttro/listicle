@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -9,6 +10,7 @@ import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
+import { addArticle, editArticle, closeDialog } from '../../state/actions';
 
 function Field({ name, label, value, register, errors }) {
   return (
@@ -22,49 +24,57 @@ function Field({ name, label, value, register, errors }) {
   );
 }
 
-function FormDialog({
-  open = false,
-  article = {},
-  handleFormSubmit,
-  handleClose,
-}) {
+function FormDialog() {
   const { register, handleSubmit, errors } = useForm();
-  const { title, description, image } = article;
+  const { open, articleId } = useSelector(state => state.formDialog);
+  const articles = useSelector(state => state.articles);
+  const dispatch = useDispatch();
 
-  const onSubmit = data => {
-    handleFormSubmit(data);
-    handleClose();
+  const { title = '', description = '', image = '' } = articleId
+    ? articles.find(article => article.id === articleId)
+    : {};
+
+  const handleCloseDialog = () => {
+    dispatch(closeDialog());
+  };
+
+  const handleFormSubmit = data => {
+    articleId
+      ? dispatch(editArticle({ ...data, id: articleId }))
+      : dispatch(addArticle(data));
+
+    handleCloseDialog();
   };
 
   return (
-    <Dialog open={open} onClose={handleClose}>
-      <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
+    <Dialog open={open}>
+      <form onSubmit={handleSubmit(handleFormSubmit)} autoComplete="off">
         <DialogTitle>Add new card</DialogTitle>
         <DialogContent>
           <Field
             name="title"
             label="Title *"
-            value={title || ''}
+            value={title}
             register={() => register({ required: 'Field is required' })}
             errors={errors}
           />
           <Field
             name="description"
             label="Description *"
-            value={description || ''}
+            value={description}
             register={() => register({ required: 'Field is required' })}
             errors={errors}
           />
           <Field
             name="image"
             label="Image (url)"
-            value={image || ''}
+            value={image}
             register={() => register()}
             errors={errors}
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={handleCloseDialog} color="primary">
             Cancel
           </Button>
           <Button variant="contained" color="primary" type="submit">

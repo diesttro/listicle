@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteArticle, openDialog } from '../../state/actions';
-import Article from '../../components/Article';
+import Article from '../Article';
 
 function Articles() {
   const articles = useSelector(state => state.articles);

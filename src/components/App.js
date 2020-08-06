@@ -4,8 +4,8 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import Articles from '../containers/Articles';
-import Dialog from '../containers/Dialog';
+import ArticleList from './ArticleList';
+import FormDialog from './FormDialog';
 import theme from '../theme';
 import '../globalStyles.scss';
 
@@ -24,10 +24,10 @@ function App() {
           </Grid>
         </Grid>
         <Grid container spacing={2}>
-          <Articles />
+          <ArticleList />
         </Grid>
       </Container>
-      <Dialog />
+      <FormDialog />
     </ThemeProvider>
   );
 }
