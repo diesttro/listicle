@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -20,14 +20,19 @@ function Article({
   handleDelete,
   handleOpenDialog,
 }) {
+  const imageRef = useRef(null);
+
   return (
     <Grid item xs={12} sm={6} md={4}>
       <Card className="card">
         <CardMedia
           src={image || DEFAULT_IMAGE}
           component="img"
+          ref={imageRef}
           style={{ height: '140px' }}
-          onError={event => (event.target.src = DEFAULT_IMAGE)}
+          onError={() => {
+            if (imageRef) imageRef.current.src = DEFAULT_IMAGE;
+          }}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
