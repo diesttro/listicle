@@ -53,7 +53,7 @@ function FormDialog() {
   };
 
   return (
-    <Dialog open={open}>
+    <Dialog open={open} onClose={handleCloseDialog}>
       <form onSubmit={handleSubmit(handleFormSubmit)} autoComplete="off">
         <DialogTitle>Add new card</DialogTitle>
         <DialogContent>
