@@ -3,6 +3,7 @@ import uniqid from 'uniqid';
 const initialState = [
   {
     id: uniqid(),
+    date: Date.now(),
     title: 'Lorem ipsum dolor sit amet',
     description:
       'Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat',
@@ -11,6 +12,7 @@ const initialState = [
   },
   {
     id: uniqid(),
+    date: Date.now() + 100,
     title: 'Lorem ipsum dolor sit amet',
     description:
       'Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat',
@@ -24,6 +26,7 @@ const articles = (state = initialState, action) => {
     case 'ADD_ARTICLE':
       return state.concat({
         id: uniqid(),
+        date: Date.now(),
         title: payload.title,
         description: payload.description,
         image: payload.image,
@@ -34,6 +37,7 @@ const articles = (state = initialState, action) => {
           article.id === payload.id
             ? articles.concat({
                 id: article.id,
+                date: article.date,
                 title: payload.title,
                 description: payload.description,
                 image: payload.image,
