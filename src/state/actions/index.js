@@ -22,4 +22,16 @@ const closeDialog = () => ({
   type: 'CLOSE_DIALOG',
 });
 
-export { addArticle, editArticle, deleteArticle, openDialog, closeDialog };
+const setOrder = order => ({
+  type: 'SET_ORDER',
+  payload: { order },
+});
+
+export {
+  addArticle,
+  editArticle,
+  deleteArticle,
+  openDialog,
+  closeDialog,
+  setOrder,
+};
