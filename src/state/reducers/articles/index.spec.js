@@ -1,4 +1,9 @@
-import { addArticle, editArticle, deleteArticle } from '../../actions';
+import {
+  setArticles,
+  addArticle,
+  editArticle,
+  deleteArticle,
+} from '../../actions';
 import reducer from './';
 
 let initialState;
@@ -17,14 +22,41 @@ beforeEach(() => {
 });
 
 describe('articles reducer', () => {
+  it('should set articles', () => {
+    const articlesSet = [
+      {
+        id: 'kdngrtry',
+        date: 1597072589725,
+        title: 'Fugit voluptas sed molestias voluptatem providen',
+        image: '',
+      },
+      {
+        id: 'kdngrtto',
+        date: 1597073737530,
+        title: 'Voluptatem eligendi optio',
+        image: '',
+      },
+      {
+        id: 'kdngrtpu',
+        date: 1534118409710,
+        title: 'Adipisci placeat illum aut reiciendis qui',
+        image: '',
+      },
+    ];
+    const setAction = setArticles(articlesSet);
+    const articlesState = reducer(initialState, setAction);
+
+    expect(articlesState.length).toBe(3);
+  });
+
   it('should add article', () => {
     const addAction = addArticle({
       title: 'Dolorem eum magni eos aperiam quia',
       description: 'ut aspernatur corporis harum nihil quis provident sequi',
     });
-    const articlesReducer = reducer(initialState, addAction);
+    const articlesState = reducer(initialState, addAction);
 
-    expect(articlesReducer.length).toBe(2);
+    expect(articlesState.length).toBe(2);
   });
 
   it('should edit article', () => {
@@ -34,10 +66,10 @@ describe('articles reducer', () => {
       description:
         'Delectus reiciendis molestiae occaecati non minima eveniet qui voluptatibus',
     });
-    const articlesReducer = reducer(initialState, editdAction);
+    const articlesState = reducer(initialState, editdAction);
 
-    expect(articlesReducer.length).toBe(1);
-    expect(articlesReducer).toEqual([
+    expect(articlesState.length).toBe(1);
+    expect(articlesState).toEqual([
       {
         id: 'kdngrtrv',
         date: 1597000307980,
@@ -50,8 +82,8 @@ describe('articles reducer', () => {
 
   it('should delete article', () => {
     const deleteAction = deleteArticle('kdngrtrv');
-    const articlesReducer = reducer(initialState, deleteAction);
+    const articlesState = reducer(initialState, deleteAction);
 
-    expect(articlesReducer.length).toBe(0);
+    expect(articlesState.length).toBe(0);
   });
 });

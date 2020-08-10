@@ -1,3 +1,8 @@
+const setArticles = articles => ({
+  type: 'SET_ARTICLES',
+  payload: { articles },
+});
+
 const addArticle = ({ title, description, image }) => ({
   type: 'ADD_ARTICLE',
   payload: { title, description, image },
@@ -28,6 +33,7 @@ const setOrder = order => ({
 });
 
 export {
+  setArticles,
   addArticle,
   editArticle,
   deleteArticle,

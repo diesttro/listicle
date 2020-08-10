@@ -1,28 +1,13 @@
 import uniqid from 'uniqid';
 
-const initialState = [
-  {
-    id: uniqid(),
-    date: Date.now(),
-    title: 'Lorem ipsum dolor sit amet',
-    description:
-      'Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat',
-    image:
-      'https://material-ui.com/static/images/cards/contemplative-reptile.jpg',
-  },
-  {
-    id: uniqid(),
-    date: Date.now() + 100,
-    title: 'Lorem ipsum dolor sit amet',
-    description:
-      'Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat',
-  },
-];
+const initialState = [];
 
 const articles = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
+    case 'SET_ARTICLES':
+      return payload.articles;
     case 'ADD_ARTICLE':
       return state.concat({
         id: uniqid(),

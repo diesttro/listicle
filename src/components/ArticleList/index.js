@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteArticle, openDialog } from '../../state/actions';
+import { setArticles, deleteArticle, openDialog } from '../../state/actions';
 import { sortByAsc, sortByDesc } from '../../utils/sortBy';
 import Article from '../Article';
 
@@ -10,15 +10,32 @@ function ArticleList() {
   const order = useSelector(state => state.order);
   const dispatch = useDispatch();
 
-  const [prop, propOrder] = order.split('-');
-  const sortedArticles =
-    propOrder === 'asc'
-      ? sortByAsc(prop, articles)
-      : sortByDesc(prop, articles);
+  useEffect(() => {
+    const storedArticles = JSON.parse(localStorage.getItem('articles'));
+
+    if (storedArticles) dispatch(setArticles(storedArticles));
+  }, []);
+
+  useEffect(() => {
+    const saveInLocalStorage = () => {
+      localStorage.setItem('articles', JSON.stringify(articles));
+    };
+
+    window.addEventListener('unload', saveInLocalStorage);
+
+    return () => window.removeEventListener('unload', saveInLocalStorage);
+  }),
+    [];
 
   const handleDelete = id => dispatch(deleteArticle(id));
 
   const handleOpenDialog = id => dispatch(openDialog(id));
+
+  const [sortProp, sortPropOrder] = order.split('-');
+  const sortedArticles =
+    sortPropOrder === 'asc'
+      ? sortByAsc(sortProp, articles)
+      : sortByDesc(sortProp, articles);
 
   return (
     <Grid container spacing={2}>
