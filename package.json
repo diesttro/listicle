@@ -4,7 +4,8 @@
   "scripts": {
     "start": "webpack-dev-server -d --mode development --open",
     "build": "webpack -p",
-    "lint": "eslint src/**/*.js src/**/*.jsx"
+    "lint": "eslint src/**/*.js src/**/*.jsx",
+    "test": "jest"
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
@@ -17,6 +18,7 @@
     "eslint-plugin-react": "^7.20.0",
     "html-loader": "^1.1.0",
     "html-webpack-plugin": "^4.3.0",
+    "jest": "^26.2.2",
     "node-sass": "^4.14.1",
     "prettier": "^2.0.5",
     "sass-loader": "^9.0.2",
