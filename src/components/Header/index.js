@@ -9,6 +9,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { openDialog, setOrder } from '../../state/actions';
+import './styles.scss';
 
 function Header() {
   const order = useSelector(state => state.order);
@@ -27,8 +28,8 @@ function Header() {
       spacing={2}
     >
       <Grid item xs={4}>
-        <Typography component="h1" variant="h4">
-          Pressa
+        <Typography component="h1" variant="h4" className="title">
+          listicle
         </Typography>
       </Grid>
       <Grid item xs={8}>
@@ -54,6 +55,8 @@ function Header() {
               variant="contained"
               color="primary"
               size="large"
+              className="add-article"
+              disableRipple
               startIcon={<AddIcon />}
               onClick={handleOpenDialog}
             >

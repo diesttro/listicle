@@ -23,26 +23,26 @@ function Article({
   const imageRef = useRef(null);
 
   return (
-    <Grid item xs={12} sm={6} md={4}>
-      <Card className="card">
+    <Grid item xs={12} md={6} xl={4}>
+      <Card className="card" elevation={3}>
         <CardMedia
           src={image || DEFAULT_IMAGE}
           component="img"
           ref={imageRef}
-          style={{ height: '140px' }}
+          className="card__image"
           onError={() => {
             if (imageRef) imageRef.current.src = DEFAULT_IMAGE;
           }}
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
+          <Typography component="h2" className="card__title" gutterBottom>
             {title}
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Typography component="p" className="card__text">
             {description}
           </Typography>
         </CardContent>
-        <CardActions className="card-actions">
+        <CardActions className="card__actions">
           <IconButton
             className="icon-button"
             onClick={() => handleOpenDialog(id)}

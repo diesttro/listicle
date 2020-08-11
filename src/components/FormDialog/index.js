@@ -11,6 +11,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import { addArticle, editArticle, closeDialog } from '../../state/actions';
+import './styles.scss';
 
 function Field({ name, label, value, autoFocus, register, errors }) {
   return (
@@ -55,7 +56,7 @@ function FormDialog() {
   return (
     <Dialog open={open} onClose={handleCloseDialog}>
       <form onSubmit={handleSubmit(handleFormSubmit)} autoComplete="off">
-        <DialogTitle>Add new card</DialogTitle>
+        <DialogTitle className="dialog__title">Add new article</DialogTitle>
         <DialogContent>
           <Field
             name="title"

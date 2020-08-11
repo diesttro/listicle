@@ -11,9 +11,9 @@ function ArticleList() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const storedArticles = JSON.parse(localStorage.getItem('articles'));
+    const savedArticles = JSON.parse(localStorage.getItem('articles'));
 
-    if (storedArticles) dispatch(setArticles(storedArticles));
+    if (savedArticles) dispatch(setArticles(savedArticles));
   }, []);
 
   useEffect(() => {
