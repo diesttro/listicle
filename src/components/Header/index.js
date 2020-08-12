@@ -45,8 +45,8 @@ function Header() {
                 label="Order"
               >
                 <MenuItem value="date-asc">Date (asc.)</MenuItem>
-                <MenuItem value="title-asc">Title (asc.)</MenuItem>
                 <MenuItem value="date-desc">Date (desc.)</MenuItem>
+                <MenuItem value="title-asc">Title (asc.)</MenuItem>
                 <MenuItem value="title-desc">Title (desc.)</MenuItem>
               </Select>
             </FormControl>
