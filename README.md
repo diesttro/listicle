@@ -2,7 +2,9 @@
 
 An application to create, edit and delete articles where you can sort them by date or title. Articles are saved in local storage so you can come back later and continue.
 
-_Please note that this is a technical test and the code is intended to meet those requirements_
+You can see a demo [here](https://diesttro.github.io/listicle/).
+
+_Please note that this is a technical test and the code is intended to meet those requirements._
 
 ## Usage
 
