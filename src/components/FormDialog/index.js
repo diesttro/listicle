@@ -10,7 +10,8 @@ import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
-import { addArticle, editArticle, closeDialog } from '../../state/actions';
+import { addArticle, editArticle } from '../../state/actions/articles';
+import { closeDialog } from '../../state/actions/formDialog';
 import './styles.scss';
 
 function Field({ name, label, value, autoFocus, register, errors }) {

@@ -8,7 +8,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import { openDialog, setOrder } from '../../state/actions';
+import { openDialog } from '../../state/actions/formDialog';
+import { setOrder } from '../../state/actions/order';
 import './styles.scss';
 
 function Header() {

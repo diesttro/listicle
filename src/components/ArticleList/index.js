@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import { useSelector, useDispatch } from 'react-redux';
-import { setArticles, deleteArticle, openDialog } from '../../state/actions';
+import { setArticles, deleteArticle } from '../../state/actions/articles';
+import { openDialog } from '../../state/actions/formDialog';
 import { sortByAsc, sortByDesc } from '../../utils/sortBy';
 import Article from '../Article';
 

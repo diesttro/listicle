@@ -3,7 +3,7 @@ import {
   addArticle,
   editArticle,
   deleteArticle,
-} from '../../actions';
+} from '../../actions/articles';
 import reducer from './';
 
 let initialState;
