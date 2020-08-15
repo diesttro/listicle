@@ -12,6 +12,8 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import { addArticle, editArticle } from '../../state/actions/articles';
 import { closeDialog } from '../../state/actions/formDialog';
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import './styles.scss';
 
 function Field({ name, label, value, autoFocus, register, errors }) {
@@ -34,6 +36,8 @@ function Field({ name, label, value, autoFocus, register, errors }) {
 
 function FormDialog() {
   const { register, handleSubmit, errors } = useForm();
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('xs'));
   const { open, articleId } = useSelector(state => state.formDialog);
   const articles = useSelector(state => state.articles);
   const dispatch = useDispatch();
@@ -55,8 +59,12 @@ function FormDialog() {
   };
 
   return (
-    <Dialog open={open} onClose={handleCloseDialog}>
-      <form onSubmit={handleSubmit(handleFormSubmit)} autoComplete="off">
+    <Dialog fullScreen={fullScreen} open={open} onClose={handleCloseDialog}>
+      <form
+        className="dialog__form"
+        onSubmit={handleSubmit(handleFormSubmit)}
+        autoComplete="off"
+      >
         <DialogTitle className="dialog__title">Add new article</DialogTitle>
         <DialogContent>
           <Field
