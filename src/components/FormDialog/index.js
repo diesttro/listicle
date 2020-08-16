@@ -91,10 +91,15 @@ function FormDialog() {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleCloseDialog} color="primary">
+          <Button onClick={handleCloseDialog} color="primary" size="large">
             Cancel
           </Button>
-          <Button variant="contained" color="primary" type="submit">
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+            size="large"
+          >
             Save
           </Button>
         </DialogActions>
