@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import Button from '@material-ui/core/Button';
@@ -15,6 +15,9 @@ import { closeDialog } from '../../state/actions/formDialog';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import './styles.scss';
+
+const ADD_ARTICLE = 'Add article';
+const EDIT_ARTICLE = 'Edit article';
 
 function Field({ name, label, value, autoFocus, register, errors }) {
   return (
@@ -38,13 +41,14 @@ function FormDialog() {
   const { register, handleSubmit, errors } = useForm();
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('xs'));
+  const [dialogTitle, setDialogTitle] = useState(null);
   const { open, articleId } = useSelector(state => state.formDialog);
   const articles = useSelector(state => state.articles);
   const dispatch = useDispatch();
 
-  const { title = '', description = '', image = '' } = articleId
-    ? articles.find(article => article.id === articleId)
-    : {};
+  useEffect(() => {
+    if (open) setDialogTitle(articleId ? EDIT_ARTICLE : ADD_ARTICLE);
+  }, [open]);
 
   const handleCloseDialog = () => {
     dispatch(closeDialog());
@@ -58,6 +62,10 @@ function FormDialog() {
     handleCloseDialog();
   };
 
+  const { title = '', description = '', image = '' } = articleId
+    ? articles.find(article => article.id === articleId)
+    : {};
+
   return (
     <Dialog fullScreen={fullScreen} open={open} onClose={handleCloseDialog}>
       <form
@@ -65,7 +73,7 @@ function FormDialog() {
         onSubmit={handleSubmit(handleFormSubmit)}
         autoComplete="off"
       >
-        <DialogTitle className="dialog__title">Add new article</DialogTitle>
+        <DialogTitle className="dialog__title">{dialogTitle}</DialogTitle>
         <DialogContent>
           <Field
             name="title"
