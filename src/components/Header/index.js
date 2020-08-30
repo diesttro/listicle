@@ -10,10 +10,11 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { openDialog } from '../../state/actions/formDialog';
 import { setOrder } from '../../state/actions/order';
+import { orderSelector } from '../../state/selectors/order';
 import './styles.scss';
 
 function Header() {
-  const order = useSelector(state => state.order);
+  const order = useSelector(orderSelector);
   const dispatch = useDispatch();
 
   const handleOrderChange = order => dispatch(setOrder(order));

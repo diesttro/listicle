@@ -3,12 +3,14 @@ import Grid from '@material-ui/core/Grid';
 import { useSelector, useDispatch } from 'react-redux';
 import { setArticles, deleteArticle } from '../../state/actions/articles';
 import { openDialog } from '../../state/actions/formDialog';
+import { articlesSelector } from '../../state/selectors/articles';
+import { orderSelector } from '../../state/selectors/order';
 import { sortByAsc, sortByDesc } from '../../utils/sortBy';
 import Article from '../Article';
 
 function ArticleList() {
-  const articles = useSelector(state => state.articles);
-  const order = useSelector(state => state.order);
+  const articles = useSelector(articlesSelector);
+  const order = useSelector(orderSelector);
   const dispatch = useDispatch();
 
   useEffect(() => {

@@ -12,6 +12,8 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import { addArticle, editArticle } from '../../state/actions/articles';
 import { closeDialog } from '../../state/actions/formDialog';
+import { formDialogSelector } from '../../state/selectors/formDialog';
+import { articlesSelector } from '../../state/selectors/articles';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import './styles.scss';
@@ -42,8 +44,8 @@ function FormDialog() {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('xs'));
   const [dialogTitle, setDialogTitle] = useState(null);
-  const { open, articleId } = useSelector(state => state.formDialog);
-  const articles = useSelector(state => state.articles);
+  const { open, articleId } = useSelector(formDialogSelector);
+  const articles = useSelector(articlesSelector);
   const dispatch = useDispatch();
 
   useEffect(() => {
