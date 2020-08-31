@@ -1,6 +1,6 @@
 # Listicle
 
-An application to create, edit and delete articles where you can sort them by date or title. Articles are saved in local storage so you can come back later and continue.
+Create, edit and delete articles where you can sort them by date or title. Articles are saved in local storage so you can come back later and continue.
 
 You can see a demo [here](https://diesttro.github.io/listicle/).
 
@@ -22,7 +22,7 @@ npm run start
 
 ## Tests
 
-At the moment there are only unitary tests.
+Some functionalities are covered by tests.
 
 ```bash
 npm run test
