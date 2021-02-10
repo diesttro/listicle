@@ -22,6 +22,10 @@ function Article({
 }) {
   const imageRef = useRef(null);
 
+  const handleImageError = () => {
+    if (imageRef) imageRef.current.src = DEFAULT_IMAGE;
+  };
+
   return (
     <Grid item xs={12} md={6} xl={4}>
       <Card className="card" elevation={3}>
@@ -30,9 +34,7 @@ function Article({
           component="img"
           ref={imageRef}
           className="card__image"
-          onError={() => {
-            if (imageRef) imageRef.current.src = DEFAULT_IMAGE;
-          }}
+          onError={handleImageError}
         />
         <CardContent>
           <Typography component="h2" className="card__title" gutterBottom>
