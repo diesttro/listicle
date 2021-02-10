@@ -5,13 +5,15 @@ import { setArticles, deleteArticle } from '../../state/actions/articles';
 import { openDialog } from '../../state/actions/formDialog';
 import { articlesSelector } from '../../state/selectors/articles';
 import { orderSelector } from '../../state/selectors/order';
-import { sortByAsc, sortByDesc } from '../../utils/sortBy';
+import sortByProp from '../../utils/sortByProp';
 import Article from '../Article';
 
 function ArticleList() {
   const articles = useSelector(articlesSelector);
   const order = useSelector(orderSelector);
   const dispatch = useDispatch();
+  const [sortProp, orderProp] = order.split(':');
+  const sortedArticles = sortByProp(sortProp, articles, orderProp);
 
   useEffect(() => {
     const savedArticles = JSON.parse(localStorage.getItem('articles'));
@@ -33,12 +35,6 @@ function ArticleList() {
   const handleDelete = id => dispatch(deleteArticle(id));
 
   const handleOpenDialog = id => dispatch(openDialog(id));
-
-  const [sortProp, sortPropOrder] = order.split('-');
-  const sortedArticles =
-    sortPropOrder === 'asc'
-      ? sortByAsc(sortProp, articles)
-      : sortByDesc(sortProp, articles);
 
   return (
     <Grid container spacing={2}>

@@ -1,4 +1,4 @@
-const initialState = 'date-desc';
+const initialState = 'date:desc';
 
 const order = (state = initialState, action) => {
   const { type, payload } = action;

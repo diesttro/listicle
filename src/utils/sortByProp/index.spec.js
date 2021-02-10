@@ -1,4 +1,4 @@
-import { sortByAsc, sortByDesc } from './';
+import sortByProp from './';
 
 const values = [
   {
@@ -32,7 +32,7 @@ describe('sortBy', () => {
       },
     ];
 
-    expect(sortByAsc('date', values)).toEqual(valuesSortedByDateAsc);
+    expect(sortByProp('date', values)).toEqual(valuesSortedByDateAsc);
   });
 
   it('should return the values sorted by date desc', () => {
@@ -51,7 +51,7 @@ describe('sortBy', () => {
       },
     ];
 
-    expect(sortByDesc('date', values)).toEqual(valuesSortedByDateDesc);
+    expect(sortByProp('date', values, 'desc')).toEqual(valuesSortedByDateDesc);
   });
 
   it('should return the values sorted by title asc', () => {
@@ -70,7 +70,7 @@ describe('sortBy', () => {
       },
     ];
 
-    expect(sortByAsc('title', values)).toEqual(valuesSortedByTitleAsc);
+    expect(sortByProp('title', values)).toEqual(valuesSortedByTitleAsc);
   });
 
   it('should return the values sorted by title desc', () => {
@@ -89,6 +89,8 @@ describe('sortBy', () => {
       },
     ];
 
-    expect(sortByDesc('title', values)).toEqual(valuesSortedByTitleDesc);
+    expect(sortByProp('title', values, 'desc')).toEqual(
+      valuesSortedByTitleDesc
+    );
   });
 });
